@@ -23,6 +23,7 @@ final class SubredditFactory extends Factory
             'name' => fake()->unique()->words(3, true),
             'description' => fake()->sentence(),
             'photo' => fake()->imageUrl(640, 480, 'cats', true),
+            'banner' => fake()->imageUrl(1024, 200, 'cats', true),
         ];
     }
 }
