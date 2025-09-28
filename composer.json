@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.4",
         "filament/filament": "^4.0.20",
-        "filament/spatie-laravel-media-library-plugin": "^4.0.20",
+        "filament/spatie-laravel-media-library-plugin": "^4.0",
         "laravel/framework": "^12.31.1",
         "laravel/tinker": "^2.10.1"
     },
