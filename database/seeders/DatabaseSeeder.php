@@ -24,17 +24,28 @@ final class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => 'password',
         ]);
+
         User::factory(10)->create()->each(function ($user): void {
 
             $subreddit = Subreddit::factory()->create();
+
             $user->subreddits()->attach($subreddit);
+
+            $extraUsers = User::query()->inRandomOrder()->where('id', '!=', $user->id)->take(4)->get();
+            foreach ($extraUsers as $extraUser) {
+                $extraUser->subreddits()->attach($subreddit);
+            }
 
             $posts = Post::factory(3)->create([
                 'subreddit_id' => $subreddit->id,
                 'user_id' => $user->id,
             ]);
 
-            $otherPosts = Post::query()->inRandomOrder()->where('user_id', '!=', $user->id)->take(2)->get();
+            $otherPosts = Post::query()
+                ->inRandomOrder()
+                ->where('user_id', '!=', $user->id)
+                ->take(2)
+                ->get();
 
             foreach ($otherPosts as $post) {
                 Comment::factory(2)->create([
