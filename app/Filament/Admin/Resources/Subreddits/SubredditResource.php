@@ -7,6 +7,7 @@ namespace App\Filament\Admin\Resources\Subreddits;
 use App\Filament\Admin\Resources\Subreddits\Pages\CreateSubreddit;
 use App\Filament\Admin\Resources\Subreddits\Pages\EditSubreddit;
 use App\Filament\Admin\Resources\Subreddits\Pages\ListSubreddits;
+use App\Filament\Admin\Resources\Subreddits\Pages\ManageSubredditUsers;
 use App\Filament\Admin\Resources\Subreddits\Schemas\SubredditForm;
 use App\Filament\Admin\Resources\Subreddits\Schemas\SubredditInfolist;
 use App\Filament\Admin\Resources\Subreddits\Tables\SubredditsTable;
@@ -60,6 +61,7 @@ final class SubredditResource extends Resource
     {
         return $page->generateNavigationItems([
             EditSubreddit::class,
+            ManageSubredditUsers::class,
 
         ]);
     }
@@ -70,6 +72,7 @@ final class SubredditResource extends Resource
             'index' => ListSubreddits::route('/'),
             'create' => CreateSubreddit::route('/criar'),
             'edit' => EditSubreddit::route('/{record}/editar'),
+            'users' => ManageSubredditUsers::route('/{record}/usuarios'),
         ];
     }
 }
