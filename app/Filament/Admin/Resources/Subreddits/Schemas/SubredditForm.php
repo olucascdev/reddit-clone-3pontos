@@ -34,6 +34,14 @@ final class SubredditForm
                             ->acceptedFileTypes(['image/*'])
                             ->columnSpanFull(),
 
+                        SpatieMediaLibraryFileUpload::make('banner')
+                            ->label('Banner')
+                            ->imageEditor()
+                            ->disk('public')
+                            ->maxSize(2048)
+                            ->acceptedFileTypes(['image/*'])
+                            ->columnSpanFull(),
+
                         TextInput::make('name')
                             ->label('Nome')
                             ->required()

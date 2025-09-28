@@ -29,6 +29,12 @@ final class SubredditInfolist
                             ->circular()
                             ->ColumnSpanFull(),
 
+                        SpatieMediaLibraryImageEntry::make('banner')
+                            ->label('Banner')
+                            ->disk('public')
+                            ->circular()
+                            ->ColumnSpanFull(),
+
                         TextEntry::make('name')
                             ->label('Nome'),
 
