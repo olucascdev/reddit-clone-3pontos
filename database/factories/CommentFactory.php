@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Comment>
+ * @extends Factory<Comment>
  */
 final class CommentFactory extends Factory
 {
@@ -19,7 +20,7 @@ final class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content' => fake()->paragraph(),
         ];
     }
 }
