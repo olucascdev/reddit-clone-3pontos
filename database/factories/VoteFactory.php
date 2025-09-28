@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Vote;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Vote>
+ * @extends Factory<Vote>
  */
 final class VoteFactory extends Factory
 {
@@ -19,7 +20,7 @@ final class VoteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'value' => fake()->randomElement([-1, 1]),
         ];
     }
 }
