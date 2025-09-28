@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->string('photo')->nullable();
+            $table->string('banner')->nullable();
             $table->timestamps();
         });
     }

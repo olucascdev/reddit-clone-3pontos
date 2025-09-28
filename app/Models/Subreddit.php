@@ -24,6 +24,7 @@ final class Subreddit extends Model implements HasMedia
         'name',
         'description',
         'photo',
+        'banner',
     ];
 
     /**
