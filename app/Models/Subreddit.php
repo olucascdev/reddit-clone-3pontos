@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Database\Factories\SubredditFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-final class Subreddit extends Model
+final class Subreddit extends Model implements HasMedia
 {
-    /** @use HasFactory<\Database\Factories\SubredditFactory> */
+    /** @use HasFactory<SubredditFactory> */
     use HasFactory;
+
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -30,7 +35,7 @@ final class Subreddit extends Model
     }
 
     /**
-     * @return HasMany<\App\Models\Post, $this>
+     * @return HasMany<Post, $this>
      */
     public function posts(): HasMany
     {
