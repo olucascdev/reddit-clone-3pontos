@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Subreddit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Subreddit>
+ * @extends Factory<Subreddit>
  */
 final class SubredditFactory extends Factory
 {
@@ -19,7 +20,9 @@ final class SubredditFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->words(3, true),
+            'description' => fake()->sentence(),
+            'photo' => fake()->imageUrl(640, 480, 'cats', true),
         ];
     }
 }
