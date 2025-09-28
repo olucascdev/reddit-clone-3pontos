@@ -7,6 +7,7 @@ namespace App\Filament\Admin\Resources\Users;
 use App\Filament\Admin\Resources\Users\Pages\CreateUser;
 use App\Filament\Admin\Resources\Users\Pages\EditUser;
 use App\Filament\Admin\Resources\Users\Pages\ListUsers;
+use App\Filament\Admin\Resources\Users\Pages\ManageUserSubreddits;
 use App\Filament\Admin\Resources\Users\Schemas\UserForm;
 use App\Filament\Admin\Resources\Users\Schemas\UserInfolist;
 use App\Filament\Admin\Resources\Users\Tables\UsersTable;
@@ -60,6 +61,7 @@ final class UserResource extends Resource
     {
         return $page->generateNavigationItems([
             EditUser::class,
+            ManageUserSubreddits::class,
 
         ]);
     }
@@ -70,6 +72,7 @@ final class UserResource extends Resource
             'index' => ListUsers::route('/'),
             'create' => CreateUser::route('/criar'),
             'edit' => EditUser::route('/{record}/editar'),
+            'subreddits' => ManageUserSubreddits::route('/{record}/subreddits'),
         ];
     }
 }
