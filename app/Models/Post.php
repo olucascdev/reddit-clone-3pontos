@@ -23,7 +23,6 @@ final class Post extends Model implements HasMedia
         'subreddit_id',
         'user_id',
         'title',
-        'slug',
         'photo',
         'content',
     ];
@@ -52,7 +51,10 @@ final class Post extends Model implements HasMedia
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function votes()
+    /**
+     * @return MorphMany<Vote, $this>
+     */
+    public function votes(): MorphMany
     {
         return $this->morphMany(Vote::class, 'votable');
     }

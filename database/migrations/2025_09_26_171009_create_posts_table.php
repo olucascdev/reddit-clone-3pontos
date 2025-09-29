@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('subreddit_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('slug')->unique();
             $table->string('photo')->nullable();
             $table->longText('content')->nullable();
             $table->timestamps();
