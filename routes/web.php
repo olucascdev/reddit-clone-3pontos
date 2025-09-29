@@ -7,9 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn (): View|Factory => view('welcome'));
-
-Route::get('/dashboard', fn (): View|Factory => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', fn (): View|Factory => view('welcome'))->name('home');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
