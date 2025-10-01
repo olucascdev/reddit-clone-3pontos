@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
@@ -31,6 +34,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -53,6 +57,38 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         $avatar = $this->getFirstMedia('profile-pictures');
 
         return $avatar?->getUrl();
+    }
+
+    /**
+     * @return BelongsToMany<\App\Models\Subreddit, $this, Pivot>
+     */
+    public function subreddits(): BelongsToMany
+    {
+        return $this->belongsToMany(Subreddit::class)->withTimestamps();
+    }
+
+    /**
+     * @return HasMany<\App\Models\Post, $this>
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * @return HasMany<\App\Models\Comment, $this>
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * @return HasMany<\App\Models\Vote, $this>
+     */
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
     }
 
     /**
