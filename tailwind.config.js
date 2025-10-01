@@ -3,6 +3,7 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
@@ -133,7 +134,7 @@ export default {
                     400: '#CD6AFF',
                     300: '#E482FF',
                 },
-                // -------- Light Mode --------
+
                 light: {
                     state: {
                         success: '#03AD0D',
@@ -160,11 +161,11 @@ export default {
                         medium: '#C7C7C8',
                         low: '#5E5E64',
                         dark: '#2C2C2D',
-                        light: '#E8E8F1',
+                        light: '#E8E9F1',
                     },
                     elevation: {
-                        surface: '#FFFFFF',
-                        '01dp': '#F5F5F5',
+                        surface: '#FBFBFF',
+                        '01dp': '#F7F8FC',
                         '02dp': '#EFEFEF',
                         '03dp': '#E0E0E0',
                         '04dp': '#D0D0D0',
@@ -172,7 +173,6 @@ export default {
                     },
                 },
 
-                // -------- Dark Mode --------
                 dark: {
                     state: {
                         success: '#03AD0D',
@@ -214,5 +214,5 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, require('@tailwindcss/typography')],
 };

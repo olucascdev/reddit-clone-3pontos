@@ -41,5 +41,8 @@
             "vendor/bin/pint",
             "vendor/bin/rector process"
         ]
+    },
+    "dependencies": {
+        "@tailwindcss/typography": "^0.5.19"
     }
 }
