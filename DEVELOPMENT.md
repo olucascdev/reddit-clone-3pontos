@@ -102,10 +102,11 @@ com Tailwind.
 Foi interessante esse desafio, eu realmente aprendi bastante coisa fazendo, pesquisando e tentando, algumas noites mal dormidas, mas valeu a pena.
 Não sei se vou conseguir fazer os Testes com Pest, mas vou tentar fazer se der tempo até as 13h...
 
-
-
 ##### 01/10
 
 Não fiz os testes :( , porem coloquei o laravel sail para rodar o projeto em container com somente pgsql
 
 cara simplesmente minhas views sumiram, fui colocar o laravel sail e testar ele e não tinha pagina de home, post, subreddit, tudo que eu passei a madrugada fazendo, isso é surreal!
+
+bom, eu consegui as bases que eu tinha feito com IA por sorte apenas 6 arquivos sumiram sem resgitro, eu consegui pegar a base dos componentes de views e fiz na IA muito rapido, já peço desculpa por isso, realmente
+eu tinha feito bem estruturado igual no figma, mas agr eu tmb n tenho como provar, eu realmente n sei o que houve, mas enfim, eu refiz os arquivos que eu tinha perdido e consegui terminar o projeto a tempo.
