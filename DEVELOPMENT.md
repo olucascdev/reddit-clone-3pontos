@@ -100,3 +100,4 @@ Depois eu fui fazendo as views, fiz boa parte das views e componentes com Ia, pr
 com Tailwind.
 
 Foi interessante esse desafio, eu realmente aprendi bastante coisa fazendo, pesquisando e tentando, algumas noites mal dormidas, mas valeu a pena.
+Não sei se vou conseguir fazer os Testes com Pest, mas vou tentar fazer se der tempo até as 13h...
