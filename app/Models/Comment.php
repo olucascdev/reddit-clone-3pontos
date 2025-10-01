@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,13 +13,15 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class Comment extends Model
 {
-    /** @use HasFactory<\Database\Factories\CommentFactory> */
+    /** @use HasFactory<CommentFactory> */
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'parent_comment_id',
         'content',
+        'commentable_type',
+        'commentable_id',
     ];
 
     public function commentable(): MorphTo
@@ -38,7 +41,7 @@ final class Comment extends Model
     }
 
     /**
-     * @return BelongsTo<\App\Models\Comment, $this>
+     * @return BelongsTo<Comment, $this>
      */
     public function parent(): BelongsTo
     {
@@ -46,7 +49,7 @@ final class Comment extends Model
     }
 
     /**
-     * @return HasMany<\App\Models\Comment, $this>
+     * @return HasMany<Comment, $this>
      */
     public function replies(): HasMany
     {
