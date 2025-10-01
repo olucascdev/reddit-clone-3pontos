@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\SubredditController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn (): View|Factory => view('welcome'))->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/r/{subreddit:name}', [SubredditController::class, 'show'])->name('subreddit.show');
+Route::get('/r/{subreddit:name}/posts/{post}', [PostController::class, 'show'])->name('post.show');
 
-Route::middleware('auth')->group(function (): void {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth'])->group(function (): void {
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/comments/{comment}/replies', [CommentController::class, 'reply'])->name('comments.reply');
 });
 
 require __DIR__.'/auth.php';
