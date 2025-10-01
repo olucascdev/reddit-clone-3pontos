@@ -2,13 +2,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div class="flex justify-between items-center w-full h-full">
 
-            <!-- Logo + Sidebar Toggle -->
+            <!-- Botão Toggle Sidebar -->
             <div class="flex items-center gap-4 h-full">
-                <!-- Botão Toggle Sidebar -->
-                <button
-                    @click="$dispatch('toggle-sidebar')"
-                    class="lg:hidden p-2 rounded-lg hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp"
-                >
+                <button @click="$dispatch('toggle-sidebar')"
+                        class="lg:hidden p-2 rounded-lg hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp">
                     <x-heroicon-o-bars-3 class="w-6 h-6 text-light-icon-high dark:text-dark-icon-high"/>
                 </button>
             </div>
@@ -16,24 +13,17 @@
             <!-- Ações -->
             <div class="flex items-center gap-4 h-full">
                 <!-- Dark Mode Toggle -->
-                <button
-                    onclick="toggleDarkMode()"
-                    class="p-2 rounded-lg hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp"
-                    aria-label="Toggle dark mode"
-                >
-                    <!-- Sun icon (mostrar no dark mode) -->
+                <button onclick="toggleDarkMode()"
+                        class="p-2 rounded-lg hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp"
+                        aria-label="Toggle dark mode">
                     <x-heroicon-o-sun class="w-6 h-6 hidden dark:block text-light-icon-high dark:text-dark-icon-high"/>
-                    <!-- Moon icon (mostrar no light mode) -->
                     <x-heroicon-o-moon class="w-6 h-6 dark:hidden text-light-icon-high dark:text-dark-icon-high"/>
                 </button>
 
                 @auth
                     <!-- User Menu -->
                     <div x-data="{ open: false }" class="relative">
-                        <button
-                            @click="open = !open"
-                            class="flex items-center gap-2"
-                        >
+                        <button @click="open = !open" class="flex items-center gap-2">
                             @if(auth()->user()->avatar)
                                 <img src="{{ auth()->user()->avatar }}" class="w-8 h-8 rounded-full" alt="Avatar">
                             @else
@@ -43,25 +33,26 @@
                             @endif
                         </button>
 
-                        <div
-                            x-show="open"
-                            @click.away="open = false"
-                            class="absolute right-0 mt-2 w-48 bg-light-elevation-01dp dark:bg-dark-elevation-01dp rounded-lg shadow-lg border border-light-outline-light dark:border-dark-outline-low"
-                            style="display: none;"
-                        >
+                        <div x-show="open"
+                             @click.away="open = false"
+                             class="absolute right-0 mt-2 w-48 bg-light-elevation-01dp dark:bg-dark-elevation-01dp rounded-lg shadow-lg border border-light-outline-light dark:border-dark-outline-low"
+                             style="display: none;">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp text-light-text-high dark:text-dark-text-high rounded-lg">
+                                <button type="submit"
+                                        class="block w-full text-left px-4 py-2 hover:bg-light-elevation-02dp dark:hover:bg-dark-elevation-02dp text-light-text-high dark:text-dark-text-high rounded-lg">
                                     Sair
                                 </button>
                             </form>
                         </div>
                     </div>
                 @else
-                    <a href="/login" class="px-4 py-2 text-light-text-medium dark:text-dark-text-medium hover:text-light-text-high dark:hover:text-dark-text-high">
+                    <a href="/login"
+                       class="px-4 py-2 text-light-text-medium dark:text-dark-text-medium hover:text-light-text-high dark:hover:text-dark-text-high">
                         Entrar
                     </a>
-                    <a href="/register" class="px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-500 font-semibold">
+                    <a href="/register"
+                       class="px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-500 font-semibold">
                         Registrar
                     </a>
                 @endauth
