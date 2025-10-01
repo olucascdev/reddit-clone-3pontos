@@ -56,3 +56,47 @@ Na criação das migrations, alguns pontos legais a se falar:
 Depois de pedi para o claude IA da uma conferida na estrutura do meu BD para ver se tava tudo coerente conforme eu tinha pensado inicialmente, eu pedi para o Gemini fazer um diagrama para melhor visualização:
 
 > https://encurtador.com.br/RVEW8
+
+##### 27/09
+
+Partir para a parte da implementação do painel admin, cara, teve um problema com resources criados que não estavam aparecendo na home e isso eu perdi muito tempo,
+tava cogitando em começar os controllers, mas pedi ajuda ao Daniel no discord e ele me ajudou, thanks!
+
+No Admin não tive muitas dificuldades, fiz algo bem simples, um dashboard com as principais informações com infos fakes só para ter uma noção,
+fiz os resources de Users, Posts e Subreddits, subnavigations de User dentro de Subreddits e virse-versa. eu optei em não colocar muita coisa, pois
+eu ja tava pensando em várias coisas que eu poderia fazer, mas o tempo era curto e eu não queria me perder em detalhes, então optei por algo simples e funcional.
+e tambem personalizei um pouco.
+
+Depois pedi para a IA me ajudar a fazer as factories e Dataseeders com base no bd e relacionamentos, eu estruturei da seguinte forma:
+cada User vai ser vinculado a 2 a 3 sub reddits e esse mesmo user tenha 3 posts , 2 comentários em outros posts, e votes (up ou down)
+aleatorio em 3 posts e 2 comentarios. Fiz isso para facilitar os testes e visualização do projeto.
+
+##### 28/09, 29/09 e 30/09
+
+Para ser sincero nessa parte eu fiquei meio perdido, eu tinha pensado em fazer uma API já que era pra pensar em escalabilidade,eu tava pensando muito alem do que o desafio pedia,
+por isso eu li o desafio acho que mais de 10x pra ver realmente o que era pedido.
+Mas eu defini em fazer a parte do back end com controllers e services, e depois fazer as views.
+Para não perder muito tempo eu ja instalei o laravel breeze por conta da auth que facilitaria.
+
+E comecei a logica do user não logado (guest), basicamente o guest somente por ver as coisas(Posts, Comentarios, Subreddits)
+se por acaso ele clicar em qualquer ação(Comentar, Votar etc) ele é diretamente direcionado para a tela de login.
+
+Depois pensei na estrutura:
+Middleware -> Form Requests -> Controllers -> Services -> views
+
+Fiz um middleware para aplicar nas rotas que o user precisa estar logado, e ser !user() ele é redirecionado para o /register do breeze.
+tmb coloquei a verificação em componentes dinamicos no livewire.(mais tarde)
+
+Depois fui pra parte de HomeController, deixei ele só para exibir os posts, A ia me deu uma ideia
+de criar um PostService para lidar com a logica de pegar os posts, assim eu teria a logica separada do controller, e facilitaria
+a manutenção do código no futuro, eu só faria um **construct()** para não precisar ficar repetindo na home e no subredditController, além tmb ser mais rápido, por não precisar fazer uma query para o BD.
+Nisso controller só precisaria "pedir" os posts pra esse service. logo depois tmb utilizei o mesmo service para o SubredditController.
+
+para as ações eu fiz com Livewire, eu tinha pensado em fazer com controllers normais, mas ia pedir um Post ia passar pelo store().
+Eu não manjo muito de Livewire mais eu entendi como funciona a IA também me ajudou a fazer os componentes.
+No blade eu chamo esse componente, ele envia uma requisição AJAX para o back sem dar refresh na pagina, e o componente faz a ação e retorna a view atualizada.
+
+Depois eu fui fazendo as views, fiz boa parte das views e componentes com Ia, principalmente no começo, fazendo a base da estrutura e organizando as cores do projeto
+com Tailwind.
+
+Foi interessante esse desafio, eu realmente aprendi bastante coisa fazendo, pesquisando e tentando, algumas noites mal dormidas, mas valeu a pena.
